@@ -1,0 +1,18 @@
+services:
+  gradle-daemon:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gradle-daemon
+    volumes:
+      # Mount the project source into the container
+      - .:/project
+      # Persist the Gradle cache between container restarts
+      - gradle-cache:/home/gradle/.gradle
+    working_dir: /project
+    # Keep the container running so the daemon stays alive
+    tty: true
+    stdin_open: true
+
+volumes:
+  gradle-cache:
