@@ -22,6 +22,8 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    jvmArgs '--add-opens', 'java.base/java.util=ALL-UNNAMED',
+            '--add-opens', 'java.base/java.lang=ALL-UNNAMED'
     testLogging {
         events "passed", "skipped", "failed"
         showStandardStreams = false
